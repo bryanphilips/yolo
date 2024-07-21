@@ -3,7 +3,7 @@
  Used 
  1. Client:`node:16-alpine3.16`
  2. Backend: `node:16-alpine3.16`
- 3.Mongo : `mongo:6.0 `
+ 3.Mongo : `mongo:latest `
        
 
 ## 2. Dockerfile directives used in the creation and running of each container.
