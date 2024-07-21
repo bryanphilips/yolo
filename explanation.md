@@ -12,84 +12,70 @@
 **Client Dockerfile**
 
 ```
-# Build stage
-FROM node:16-alpine3.16 as build-stage
+# Use of multi-stage builds
+FROM node:16 AS build
 
-# Set the working directory inside the container
-WORKDIR /client
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json
+# Copy the package.json and package-lock.json files to the container
 COPY package*.json ./
 
-# Install dependencies and clears the npm cache and removes any temporary files
-RUN npm install --only=production && \
-    npm cache clean --force && \
-    rm -rf /tmp/*
+# Install application dependencies
+RUN npm install
 
-# Copy the rest of the application code
+# Copy the rest of the application code to the container
 COPY . .
 
-# Build the application and  remove development dependencies
-RUN npm run build && \
-    npm prune --production
+FROM alpine:3.16.7
 
-# Production stage
-FROM node:16-alpine3.16 as production-stage
 
-WORKDIR /client
+WORKDIR /app
 
-# Copy only the necessary files from the build stage
-COPY --from=build-stage /client/build ./build
-COPY --from=build-stage /client/public ./public
-COPY --from=build-stage /client/src ./src
-COPY --from=build-stage /client/package*.json ./
+RUN apk update && apk add npm
 
-# Set the environment variable for the app
-ENV NODE_ENV=production
+COPY --from=build /usr/src/app /app
 
-# Expose the port used by the app
+# Expose the port the app runs on
 EXPOSE 3000
 
-# Prune the node_modules directory to remove development dependencies and clears the npm cache and removes any temporary files
-
-
-# Start the application
+# Define the command to run your app
 CMD ["npm", "start"]
+
 
 ```
 **Backend Dockerfile**
 
 ```
-# Set base image
-FROM node:16-alpine3.16
+# Use an official Node runtime as a parent image
+FROM node:16 AS build
 
-# Set the working directory
-WORKDIR /backend
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the container
+# Copy the package.json and package-lock.json files to the container
 COPY package*.json ./
 
-# Install dependencies and clears the npm cache and removes any temporary files
-RUN npm install --only=production && \
-    npm cache clean --force && \
-    rm -rf /tmp/*
+# Install application dependencies
+RUN npm install --production
 
-# Copy the rest of the application code
+# Copy the rest of the application code to the container
 COPY . .
 
-# Set the environment variable for the app
-ENV NODE_ENV=production
+#Add multi-stage build
+FROM alpine:3.18
 
-# Expose the port used by the app
+WORKDIR /app
+
+RUN apk update && apk add --update nodejs
+
+COPY --from=build /usr/src/app /app
+
+# Expose the port the app runs on
 EXPOSE 5000
 
-# Prune the node_modules directory to remove development dependencies and clears the npm cache and removes any temporary files
-RUN npm prune --production && \
-    npm cache clean --force && \
-    rm -rf /tmp/*
-
-# Start the application
-CMD ["npm", "start"]
+# Define the command to run your app
+CMD ["node", "server"]
 
 ```
 
@@ -104,24 +90,24 @@ services:
     ports:
       - "5000:5000"
     networks:
-      - yolo-network
+      - yolo-app-network
 
   client:
     # ...
     ports:
       - "3000:3000"
     networks:
-      - yolo-network
+      - yolo-app-network
   
   mongodb:
     # ...
     ports:
       - "27017:27017"
     networks:
-      - yolo-network
+      - yolo-app-network
 
 networks:
-  yolo-network:
+  yolo-app-network:
     driver: bridge
 ```
 In this configuration, the backend container is mapped to port 5000 of the host, the frontend container is mapped to port 3000 of the host, and mongo container is mapped to port 27017 of the host. All containers are connected to the yolo-app-network bridge network.
