@@ -147,16 +147,13 @@ To achieve the task the following git workflow was used:
 1. Fork the repository from the original repository.
 2. Clone the repo: `git@github.com:Maubinyaachi/yolo-Microservice.git`
 3. Create a .gitignore file to exclude unnecessary     files and directories from version control.
-4. Added Dockerfile for the client to the repo:
-`git add client/Dockerfile`
-5. Add Dockerfile for the backend to the repo:
-`git add backend/dockerfile`
-6. Committed the changes:
-`git commit -m "Added Dockerfiles"`
-7. Added docker-compose file to the repo:
-`git add docker-compose.yml`
+4. Create Dockefile for client
+5. Create Dockerfile for backend
+6. Create docker-compose.yml 
+7. Added all the changes
+`git add .`
 8. Committed the changes:
-`git commit -m "Added docker-compose file"`
+`git commit -m "Added added all changes"`
 9. Pushed the files to github:
 `git push `
 10. Built the client and backend images:
@@ -166,5 +163,5 @@ To achieve the task the following git workflow was used:
 12. Deployed the containers using docker compose:
 `docker compose up`
 
-13. Created explanation.md file and modified it as the commit messages in the repo will explain.
+
 

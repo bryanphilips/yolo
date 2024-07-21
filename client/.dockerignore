@@ -1,0 +1,11 @@
+node_modules
+hosts
+Dockerfile
+.vscode
+.dockerignore
+.vagrant
+roles
+.gitignore
+Vagrantfile
+build
+Structure

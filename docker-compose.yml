@@ -1,26 +1,115 @@
-services:
-  client:
-    build: ./client
-    ports:
-      - "3000:3000"
-    depends_on:
-      - backend
 
+version: '3.8'
+
+services:
   backend:
-    build: ./backend
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
     ports:
       - "5000:5000"
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/yolodb
     depends_on:
       - mongo
+    networks:
+      - yolo-app-network
+    volumes:
+      - backend_data:/app/data
+
+  frontend:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
     environment:
-      MONGO_URL: mongodb://mongo:27017/mydatabase
+      - REACT_APP_API_BASE_URL=http://backend:5000
+    depends_on:
+      - backend
+    networks:
+      - yolo-app-network
 
   mongo:
-    image: mongo:4.4
+    image: mongo:latest
     ports:
       - "27017:27017"
+    networks:
+      - yolo-app-network
     volumes:
-      - mongo-data:/data/db
+      - mongo_data:/data/db
+
+networks:
+  yolo-app-network:
+    driver: bridge
 
 volumes:
-  mongo-data:
+  mongo_data:
+  backend_data:
+    driver: local
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# version: '3.8'
+
+# services:
+#   frontend:
+#     build:
+#       context: ./client
+#       dockerfile: Dockerfile
+#     ports:
+#       - "3000:3000"
+#     depends_on:
+#       - backend
+#     networks:
+#       - yolo-app-network
+
+#   backend:
+#     build:
+#       context: ./backend
+#       dockerfile: Dockerfile
+#     ports:
+#       - "5000:5000"
+#     environment:
+#       - MONGO_DB_URL=mongodb://mongo:27017/yolodb
+#     depends_on:
+#       - yolo-mongodb
+#     networks:
+#       - yolo-app-network
+
+#   yolo-mongodb:
+#     image: mongo
+    
+#     volumes:
+#       - mongo-data:/data/db
+#     networks:
+#       - yolo-app-network
+
+# networks:
+#   yolo-app-network:
+#     driver: bridge
+
+# volumes:
+#   mongo-data:
+#     driver: local

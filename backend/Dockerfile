@@ -1,5 +1,5 @@
 # Use an official Node runtime as a parent image
-FROM node:14 AS build
+FROM node:16 AS build
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
@@ -8,13 +8,13 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Install application dependencies
-RUN npm install
+RUN npm install --production
 
 # Copy the rest of the application code to the container
 COPY . .
 
 #Add multi-stage build
-FROM alpine:3.16.7
+FROM alpine:3.18
 
 WORKDIR /app
 
@@ -26,4 +26,4 @@ COPY --from=build /usr/src/app /app
 EXPOSE 5000
 
 # Define the command to run your app
-CMD ["node", "server.js"]
+CMD ["node", "server"]
