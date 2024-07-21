@@ -159,10 +159,10 @@ To achieve the task the following git workflow was used:
 ![yolo dockerhub](https://github.com/user-attachments/assets/2131ae76-ec64-40c2-9d9a-ea4feed0dde6)
 
 #### 2. Dockerhub frontend image with size
-file:///home/philips/Pictures/Screenshots/yolo%20frontend%20size.png
-
+![yolo frontend size](https://github.com/user-attachments/assets/1331afcd-a04f-4b05-857d-fea620dda553)
 
 #### 3. Dockerhub backend image with size
 ![yolo backend size](https://github.com/user-attachments/assets/dbef039e-ea0e-480f-b776-01983074d5d9)
+
 
 
