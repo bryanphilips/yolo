@@ -151,8 +151,7 @@ To achieve the task the following git workflow was used:
 
 ## 6. Screenshot of the deployed image on DockerHub
 
-The link to the dockerhub repository
-`https://hub.docker.com/repositories/p801`
+[The link to the dockerhub repository](https://hub.docker.com/repositories/p801)
 
 ### Screenshots
 ![yolo dockerhub](https://github.com/user-attachments/assets/2131ae76-ec64-40c2-9d9a-ea4feed0dde6)
