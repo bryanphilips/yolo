@@ -1,8 +1,8 @@
 ## 1. Choice of Base Image
- The base image used to build the containers is `node:16-alpine3.16`. It is derived from the Alpine Linux distribution, making it lightweight and compact. 
+ The base image used to build the containers is `node:16-alpine`. It is derived from the Alpine Linux distribution, making it lightweight and compact. 
  Used 
- 1. Client:`node:16-alpine3.16`
- 2. Backend: `node:16-alpine3.16`
+ 1. Client:`node:16-alpine3.16.7`
+ 2. Backend: `node:16-alpine3.18`
  3.Mongo : `mongo:latest `
        
 
@@ -124,17 +124,17 @@ networks:
   yolo-network:
     driver: bridge
 ```
-In this configuration, the backend container is mapped to port 5000 of the host, the client container is mapped to port 3000 of the host, and mongodb container is mapped to port 27017 of the host. All containers are connected to the yolo-network bridge network.
+In this configuration, the backend container is mapped to port 5000 of the host, the frontend container is mapped to port 3000 of the host, and mongo container is mapped to port 27017 of the host. All containers are connected to the yolo-app-network bridge network.
 
 
 ## 4.  Docker Compose Volume Definition and Usage
 The Docker Compose file includes volume definitions for MongoDB data storage. The relevant section is as follows:
 
-yaml
+yml
 
 ```
 volumes:
-  mongodata:  # Define Docker volume for MongoDB data
+  mongo_data:  
     driver: local
 
 ```
