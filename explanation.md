@@ -154,6 +154,15 @@ To achieve the task the following git workflow was used:
 [The link to the dockerhub repository](https://hub.docker.com/repositories/p801)
 
 ### Screenshots
+
+#### 1. Dockerhub repository
 ![yolo dockerhub](https://github.com/user-attachments/assets/2131ae76-ec64-40c2-9d9a-ea4feed0dde6)
+
+#### 2. Dockerhub frontend image with size
+file:///home/philips/Pictures/Screenshots/yolo%20frontend%20size.png
+
+
+#### 3. Dockerhub backend image with size
+![yolo backend size](https://github.com/user-attachments/assets/dbef039e-ea0e-480f-b776-01983074d5d9)
 
 
