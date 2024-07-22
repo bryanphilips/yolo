@@ -1,9 +1,9 @@
 ## 1. Choice of Base Image
- The base image used to build the containers is `node:16-alpine3.16`. It is derived from the Alpine Linux distribution, making it lightweight and compact. 
+ The base image used to build the containers is `node:16-alpine`. It is derived from the Alpine Linux distribution, making it lightweight and compact. 
  Used 
- 1. Client:`node:16-alpine3.16`
- 2. Backend: `node:16-alpine3.16`
- 3.Mongo : `mongo:6.0 `
+ 1. Client:`node:16-alpine3.16.7`
+ 2. Backend: `node:16-alpine3.18`
+ 3.Mongo : `mongo:latest `
        
 
 ## 2. Dockerfile directives used in the creation and running of each container.
@@ -12,84 +12,70 @@
 **Client Dockerfile**
 
 ```
-# Build stage
-FROM node:16-alpine3.16 as build-stage
+# Use of multi-stage builds
+FROM node:16 AS build
 
-# Set the working directory inside the container
-WORKDIR /client
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json
+# Copy the package.json and package-lock.json files to the container
 COPY package*.json ./
 
-# Install dependencies and clears the npm cache and removes any temporary files
-RUN npm install --only=production && \
-    npm cache clean --force && \
-    rm -rf /tmp/*
+# Install application dependencies
+RUN npm install
 
-# Copy the rest of the application code
+# Copy the rest of the application code to the container
 COPY . .
 
-# Build the application and  remove development dependencies
-RUN npm run build && \
-    npm prune --production
+FROM alpine:3.16.7
 
-# Production stage
-FROM node:16-alpine3.16 as production-stage
 
-WORKDIR /client
+WORKDIR /app
 
-# Copy only the necessary files from the build stage
-COPY --from=build-stage /client/build ./build
-COPY --from=build-stage /client/public ./public
-COPY --from=build-stage /client/src ./src
-COPY --from=build-stage /client/package*.json ./
+RUN apk update && apk add npm
 
-# Set the environment variable for the app
-ENV NODE_ENV=production
+COPY --from=build /usr/src/app /app
 
-# Expose the port used by the app
+# Expose the port the app runs on
 EXPOSE 3000
 
-# Prune the node_modules directory to remove development dependencies and clears the npm cache and removes any temporary files
-
-
-# Start the application
+# Define the command to run your app
 CMD ["npm", "start"]
+
 
 ```
 **Backend Dockerfile**
 
 ```
-# Set base image
-FROM node:16-alpine3.16
+# Use an official Node runtime as a parent image
+FROM node:16 AS build
 
-# Set the working directory
-WORKDIR /backend
+# Set the working directory in the container
+WORKDIR /usr/src/app
 
-# Copy package.json and package-lock.json to the container
+# Copy the package.json and package-lock.json files to the container
 COPY package*.json ./
 
-# Install dependencies and clears the npm cache and removes any temporary files
-RUN npm install --only=production && \
-    npm cache clean --force && \
-    rm -rf /tmp/*
+# Install application dependencies
+RUN npm install --production
 
-# Copy the rest of the application code
+# Copy the rest of the application code to the container
 COPY . .
 
-# Set the environment variable for the app
-ENV NODE_ENV=production
+#Add multi-stage build
+FROM alpine:3.18
 
-# Expose the port used by the app
+WORKDIR /app
+
+RUN apk update && apk add --update nodejs
+
+COPY --from=build /usr/src/app /app
+
+# Expose the port the app runs on
 EXPOSE 5000
 
-# Prune the node_modules directory to remove development dependencies and clears the npm cache and removes any temporary files
-RUN npm prune --production && \
-    npm cache clean --force && \
-    rm -rf /tmp/*
-
-# Start the application
-CMD ["npm", "start"]
+# Define the command to run your app
+CMD ["node", "server"]
 
 ```
 
@@ -104,37 +90,37 @@ services:
     ports:
       - "5000:5000"
     networks:
-      - yolo-network
+      - yolo-app-network
 
   client:
     # ...
     ports:
       - "3000:3000"
     networks:
-      - yolo-network
+      - yolo-app-network
   
   mongodb:
     # ...
     ports:
       - "27017:27017"
     networks:
-      - yolo-network
+      - yolo-app-network
 
 networks:
-  yolo-network:
+  yolo-app-network:
     driver: bridge
 ```
-In this configuration, the backend container is mapped to port 5000 of the host, the client container is mapped to port 3000 of the host, and mongodb container is mapped to port 27017 of the host. All containers are connected to the yolo-network bridge network.
+In this configuration, the backend container is mapped to port 5000 of the host, the frontend container is mapped to port 3000 of the host, and mongo container is mapped to port 27017 of the host. All containers are connected to the yolo-app-network bridge network.
 
 
 ## 4.  Docker Compose Volume Definition and Usage
 The Docker Compose file includes volume definitions for MongoDB data storage. The relevant section is as follows:
 
-yaml
+yml
 
 ```
 volumes:
-  mongodata:  # Define Docker volume for MongoDB data
+  mongo_data:  
     driver: local
 
 ```
@@ -162,6 +148,21 @@ To achieve the task the following git workflow was used:
 `docker compose push`
 12. Deployed the containers using docker compose:
 `docker compose up`
+
+## 6. Screenshot of the deployed image on DockerHub
+
+[The link to the dockerhub repository](https://hub.docker.com/repositories/p801)
+
+### Screenshots
+
+#### 1. Dockerhub repository
+![yolo dockerhub](https://github.com/user-attachments/assets/2131ae76-ec64-40c2-9d9a-ea4feed0dde6)
+
+#### 2. Dockerhub frontend image with size
+![yolo frontend size](https://github.com/user-attachments/assets/1331afcd-a04f-4b05-857d-fea620dda553)
+
+#### 3. Dockerhub backend image with size
+![yolo backend size](https://github.com/user-attachments/assets/dbef039e-ea0e-480f-b776-01983074d5d9)
 
 
 
