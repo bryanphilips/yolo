@@ -1,0 +1,65 @@
+#To launch this app without having to clone the entire repository,run the (docker-compose.yaml) 
+# Before running the .yaml file ensure to meet the requirements below
+# 1. Have Docker and the docker-compose plugin installed in your environment
+
+version: "3.8"
+
+services:
+
+  #Builds the frontend Docker image and creates the frontend microservice
+  yolo-app-frontend:
+    image: p801/yolo-app-frontend:V1.0
+    build: ./client
+    container_name: yolo-app-frontend-container
+    stdin_open: true
+    tty: true
+    ports:
+      - "3000:3000"
+    depends_on: 
+      - yolo-app-backend
+    networks:
+      - yolo-app-network
+
+  #Builds the backend Docker image and creates the backend microservice
+  yolo-app-backend:
+    image: p801/yolo-backend-app:V5.1
+    build: ./backend
+    container_name: yolo-backend-app-container
+    stdin_open: true
+    tty: true
+    restart: always
+    ports:
+      - "5000:5000"
+    depends_on: 
+      - yolo-mongodb
+    networks:
+      - yolo-app-network
+
+  #Creates the database microservice
+  yolo-mongodb:
+    image: mongo
+    container_name: yolo-mongodb-container
+    ports:
+      - "27017:27017"
+    networks:
+      - yolo-app-network
+    volumes:
+      - type: volume
+        source: mongo-data
+        target: /data/db
+
+#Creates the network infrastructure necessary for the containers to communicate with each other
+networks:
+  app-net:
+    name: yolo-app-network
+    driver: bridge
+    attachable: true
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16 
+          ip_range: 172.20.0.0/16 
+
+#Creates a Docker volume that persists all the data stored in the database
+volumes:
+  mongo-data:
+    driver: local
