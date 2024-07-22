@@ -23,7 +23,7 @@ Install the docker engine here:
   ```
   docker-compose up
   ```
-  - Terminate the application using docker compose down
+- Terminate the application using docker compose down
   ```
     docker-compose down
   ```
