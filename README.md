@@ -53,7 +53,9 @@ Install the docker engine here:
 (https://hub.docker.com/repositories/p801)
 
 #### The backend repository on dockerhub
-```docker pull p801/yolo-backend-app:V5.1```
+```
+docker pull p801/yolo-backend-app:V5.1
+```
 #### The frontend repository on dockerhub
 ``` docker pull p801/yolo-app-frontend:V1.0 ```
 
