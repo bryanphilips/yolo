@@ -20,7 +20,13 @@ Install the docker engine here:
 
 - Launch the application using docker compose up
 
-  `docker-compose up`
+  ```
+  docker-compose up
+  ```
+  - Terminate the application using docker compose down
+  ```
+    docker-compose down
+  ```
 
 ### Method 2
 - NOTE: This requires cloning of this whole repository
