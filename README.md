@@ -14,26 +14,32 @@ Install the docker engine here:
 - On your local machine, navigate to your desired directory and create
   a docker-compose.yaml file, paste the contents into it and save
 
-  `touch docker-compose.yaml`
+  ```
+  touch docker-compose.yaml
+  ```
 
 - Launch the application using docker compose up
 
-  `docker compose up`
+  `docker-compose up`
 
 ### Method 2
 - NOTE: This requires cloning of this whole repository
 
 - Clone this repository to your local machine
 
-  `git clone https://github.com/bryanphilips/yolo.git`
+  ```
+  git clone https://github.com/bryanphilips/yolo.git
+  ```
 
 - Navigate to the root directory of your cloned repository
 
   `cd yolo`
 
-- Launch the application using the docker compose command
+- Launch the application using the docker-compose command
 
-  `docker compose up`
+  ```
+  docker-compose up
+  ```
 
 ## Access the application on your browser using the following URL
  `http://localhost:3000/`
@@ -47,7 +53,9 @@ Install the docker engine here:
 - Navigate back to your terminal and press "ctrl+c" 
 
 ## How to terminate the application completely
- `docker compose down`
+ ```
+ docker-compose down
+```
 
 ## The Docker images used in this application are sourced from this repository
 (https://hub.docker.com/repositories/p801)
@@ -57,5 +65,7 @@ Install the docker engine here:
 docker pull p801/yolo-backend-app:V5.1
 ```
 #### The frontend repository on dockerhub
-``` docker pull p801/yolo-app-frontend:V1.0 ```
+``` 
+docker pull p801/yolo-app-frontend:V1.0
+```
 
