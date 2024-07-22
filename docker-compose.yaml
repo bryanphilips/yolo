@@ -37,7 +37,7 @@ services:
 
   #Creates the database microservice
   yolo-mongodb:
-    image: mongo
+    image: mongo:7.0
     container_name: yolo-mongodb-container
     ports:
       - "27017:27017"
