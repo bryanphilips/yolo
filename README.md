@@ -37,6 +37,11 @@ Install the docker engine here:
 
 ## Access the application on your browser using the following URL
  `http://localhost:3000/`
+#### Screenshot of the launched application
+![Yolo frontend](https://github.com/user-attachments/assets/88a04f67-84b9-4018-a436-96cc9bb5348c)
+
+#### Screenshot after adding products
+![yolo product persistent](https://github.com/user-attachments/assets/3113fc67-0c62-4195-b40b-94c1d87a8d66)
 
 ## How to stop the application
 - Navigate back to your terminal and press "ctrl+c" 
@@ -46,5 +51,7 @@ Install the docker engine here:
 
 ## The Docker images used in this application are sourced from this repository
 `https://hub.docker.com/repositories/p801`
+
+
 
 
