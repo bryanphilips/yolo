@@ -14,9 +14,7 @@ services:
       - mongo
     networks:
       - yolo-app-network
-    volumes:
-      - backend_data:/app/data
-
+  
   frontend:
     build:
       context: ./client
@@ -36,16 +34,14 @@ services:
       - "27017:27017"
     networks:
       - yolo-app-network
-    volumes:
-      - mongo_data:/data/db
+ 
 
 networks:
   yolo-app-network:
     driver: bridge
 
 volumes:
-  mongo_data:
-  backend_data:
+  mongo-data:
     driver: local
 
 
