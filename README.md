@@ -74,4 +74,9 @@ docker pull p801/yolo-backend-app:V5.1
 ``` 
 docker pull p801/yolo-app-frontend:V1.0
 ```
-
+#### Copy the command below to find out the image size after successful docker pull
+```
+docker images
+```
+#### You should see something similar to this 
+![dockerimages size](https://github.com/user-attachments/assets/ac9e91ea-9fcc-4ec7-9e9c-ceaecf2a8666)
