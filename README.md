@@ -98,21 +98,31 @@ The playbook.yml where we have
   name: Copy hosts file      
       copy:        
         src: hosts
+
         dest: /etc/hosts
+
         owner: root
+
         group: root
+        
         mode: "0644"
 
   In the mode: '0644' setting:
 
 0 - No special permissions  are set.
+
 6 - The owner of the file has read and write permissions (rw-).
+
 4 - The group has read-only permissions (r--).
+
 4 - Others have read-only permissions (r--).
+
 
 So, 0644 means:
 
 Owner: Read and write
+
 Group: Read only
+
 Others: Read only
 
