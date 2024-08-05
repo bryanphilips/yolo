@@ -7,3 +7,4 @@
       - "{{ backend_port }}:5000"
     networks:
       - "{{ network_name }}"
+    hostname: backend.local

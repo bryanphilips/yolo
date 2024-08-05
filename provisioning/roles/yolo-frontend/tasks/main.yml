@@ -7,3 +7,4 @@
       - "{{ frontend_port }}:3000"
     networks:
       - "{{ network_name }}"
+    hostname: frontend.local
