@@ -1,0 +1,11 @@
+---
+- name: Run MongoDB container
+  docker_container:
+    name: mongo
+    image: mongo
+    ports:
+      - "{{ mongodb_port }}:27017"
+    networks:
+      - "{{ network_name }}"
+    volumes:
+      - "{{ mongodb_volume }}:/data/db"

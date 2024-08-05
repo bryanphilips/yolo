@@ -1,0 +1,9 @@
+---
+- name: Run backend container
+  docker_container:
+    name: yolo-backend-container
+    image: "{{ yolo_backend_image }}"
+    ports:
+      - "{{ backend_port }}:5000"
+    networks:
+      - "{{ network_name }}"
