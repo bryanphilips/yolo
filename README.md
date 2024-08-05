@@ -161,7 +161,7 @@ So, 0644 means:
   
   Roles: Define roles for running Docker containers with correct hostnames.
   
-  Vagrantfile: Configure Vagrant to use the Debian Jessie box and run Ansible provisioning.
+  Vagrantfile: Configure Vagrant to use the ubuntu/jammy64 box and run Ansible provisioning.
 
   ## Running the Application
     
