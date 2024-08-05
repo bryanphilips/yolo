@@ -1,0 +1,7 @@
+# Localhost entries
+127.0.0.1   localhost
+
+# Custom service hostnames
+127.0.0.1   backend.local
+127.0.0.1   frontend.local
+127.0.0.1   mongo.local
