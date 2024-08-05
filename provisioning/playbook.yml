@@ -1,0 +1,33 @@
+---
+- name: Provision server
+  hosts: all
+  become: yes
+  vars_files:
+    - vars.yml
+
+  tasks:
+    - name: Update 
+      apt:
+        update_cache: yes
+
+    - name: Install required packages
+      apt:
+        name:
+          - docker.io
+          - docker-compose
+        state: present
+
+    - name: Create Docker network
+      command: docker network create "{{ network_name }}"
+      args:
+        creates: /var/lib/docker/network/{{ network_name }}
+
+    - name: Create MongoDB volume
+      docker_volume:
+        name: "{{ mongodb_volume }}"
+        state: present
+
+  roles:
+    - backend
+    - frontend
+    - mongodb
