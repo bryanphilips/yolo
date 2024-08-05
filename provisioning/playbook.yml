@@ -6,7 +6,7 @@
     - vars.yml
 
   tasks:
-    - name: Update 
+    - name: Update
       apt:
         update_cache: yes
 
@@ -26,8 +26,15 @@
       docker_volume:
         name: "{{ mongodb_volume }}"
         state: present
+    - name: Copy hosts file
+      copy:
+        src: hosts
+        dest: /etc/hosts
+        owner: root
+        group: root
+        mode: "0644"
 
   roles:
     - backend
-    - frontend
     - mongodb
+    - frontend
