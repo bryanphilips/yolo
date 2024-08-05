@@ -160,6 +160,6 @@ So, 0644 means:
       Vagrantfile: Configure Vagrant to use the Debian Jessie box and run Ansible provisioning.
 
   ## Running the Application
-      ```
+    
       vagrant up
-      ```
+      
