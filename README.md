@@ -168,4 +168,7 @@ So, 0644 means:
   ## Running the Application
     
       vagrant up
+  
+  ### Screenshot after running vagrant up you should see
+  
       
