@@ -147,3 +147,19 @@ So, 0644 means:
     │           │   └── main.yml
     │           └── files/
     └── Vagrantfile
+
+# Summary Description and running of the project 
+   ## Summary
+    This setup ensures that your Vagrant VM is properly configured with Docker containers and that hostname resolution is handled through the hosts file, enabling seamless communication between services.
+  
+   ## Description
+      Directory Structure: Organize the project with provisioning, roles, and Vagrantfile.
+      Hosts File: Define hostname mappings in provisioning/hosts.
+      Ansible Playbook: Include tasks to handle Docker setup and copy the hosts file.
+      Roles: Define roles for running Docker containers with correct hostnames.
+      Vagrantfile: Configure Vagrant to use the Debian Jessie box and run Ansible provisioning.
+
+  ## Running the Application
+      ```
+      vagrant up
+      ```
