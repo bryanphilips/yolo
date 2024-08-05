@@ -172,3 +172,5 @@ So, 0644 means:
   ### Screenshot after running vagrant up you should see
   
       
+
+![Screenshot from 2024-08-05 23-22-08](https://github.com/user-attachments/assets/8f19f734-7376-4caf-ac8e-b5036becbca8)
