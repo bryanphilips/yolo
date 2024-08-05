@@ -80,3 +80,9 @@ docker images
 ```
 #### You should see something similar to this 
 ![dockerimages size](https://github.com/user-attachments/assets/ac9e91ea-9fcc-4ec7-9e9c-ceaecf2a8666)
+
+
+# IP3 Configuration Management 
+
+## Approach
+I have cloned the docker hub repositories 
