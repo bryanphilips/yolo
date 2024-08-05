@@ -163,6 +163,8 @@ So, 0644 means:
   
   Vagrantfile: Configure Vagrant to use the ubuntu/jammy64 box and run Ansible provisioning.
 
+  vars.yml: used to define variables network, volume, images and ports 
+
   ## Running the Application
     
       vagrant up
