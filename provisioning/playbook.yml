@@ -10,7 +10,7 @@
       apt:
         update_cache: yes
 
-    - name: Install required packages
+    - name: Install Docker and Docker Compose
       apt:
         name:
           - docker.io
@@ -18,10 +18,9 @@
         state: present
 
     - name: Create Docker network
-      command: docker network create "{{ network_name }}"
-      args:
-        creates: /var/lib/docker/network/{{ network_name }}
-
+      docker_network:
+        name: "{{ network_name }}"
+        state: present
     - name: Create MongoDB volume
       docker_volume:
         name: "{{ mongodb_volume }}"
