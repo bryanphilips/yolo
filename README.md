@@ -94,9 +94,9 @@ Created the hosts file with custom service hostname that can show mapping of the
 
 #### update of the playbook.yml
 
-The playbook.yml where we have 
- name: Copy hosts file
-      copy:
+The playbook.yml where we have  
+  name: Copy hosts file      
+      copy:        
         src: hosts
         dest: /etc/hosts
         owner: root
@@ -105,7 +105,7 @@ The playbook.yml where we have
 
   In the mode: '0644' setting:
 
-0 - No special permissions (like setuid, setgid, or sticky bits) are set.
+0 - No special permissions  are set.
 6 - The owner of the file has read and write permissions (rw-).
 4 - The group has read-only permissions (r--).
 4 - Others have read-only permissions (r--).
