@@ -35,6 +35,6 @@
         mode: "0644"
 
   roles:
-    - backend
+    - yolo-backend
     - mongodb
-    - frontend
+    - yolo-frontend
