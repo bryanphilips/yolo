@@ -96,7 +96,8 @@ Created the hosts file with custom service hostname that can show mapping of the
 
 The playbook.yml where we have  
   name: Copy hosts file      
-      copy:        
+      copy:   
+
         src: hosts
 
         dest: /etc/hosts
@@ -104,25 +105,25 @@ The playbook.yml where we have
         owner: root
 
         group: root
-        
+
         mode: "0644"
 
   In the mode: '0644' setting:
 
-0 - No special permissions  are set.
+      0 - No special permissions  are set.
 
-6 - The owner of the file has read and write permissions (rw-).
+      6 - The owner of the file has read and write permissions (rw-).
 
-4 - The group has read-only permissions (r--).
+      4 - The group has read-only permissions (r--).
 
-4 - Others have read-only permissions (r--).
+      4 - Others have read-only permissions (r--).
 
 
 So, 0644 means:
 
-Owner: Read and write
+      Owner: Read and write
 
-Group: Read only
+      Group: Read only
 
-Others: Read only
+      Others: Read only
 
