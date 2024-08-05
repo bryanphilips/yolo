@@ -127,3 +127,23 @@ So, 0644 means:
 
       Others: Read only
 
+# Project Structure
+    yolo/
+    ├── provisioning/
+    │   ├── playbook.yml
+    │   ├── vars.yml
+    │   ├── hosts
+    │   └── roles/
+    │       ├── backend/
+    │       │   └──tasks/
+    │       │       └── main.yml
+    │       │   
+    │       ├── frontend/
+    │       │   └── tasks/
+    │       │       └── main.yml
+    │       │   
+    │       └── mongodb/
+    │           ├── tasks/
+    │           │   └── main.yml
+    │           └── files/
+    └── Vagrantfile
