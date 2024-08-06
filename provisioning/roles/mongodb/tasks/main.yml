@@ -9,4 +9,4 @@
       - "{{ network_name }}"
     volumes:
       - "{{ mongodb_volume }}:/data/db"
-    hostname: mongo.local
+    # hostname: mongo.local

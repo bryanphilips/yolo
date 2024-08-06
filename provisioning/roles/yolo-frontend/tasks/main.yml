@@ -1,4 +1,16 @@
 ---
+- name: Clone repository
+  git:
+    repo: "{{ repository_url }}"
+    dest: /home/vagrant/yolo
+    version: "{{ repository_version }}"
+
+- name: Build frontend Docker image
+  docker_image:
+    name: "{{ yolo_frontend_image }}"
+    path: /home/vagrant/yolo/frontend
+    state: present
+
 - name: Run frontend container
   docker_container:
     name: yolo-frontend-container
@@ -7,4 +19,4 @@
       - "{{ frontend_port }}:3000"
     networks:
       - "{{ network_name }}"
-    hostname: frontend.local
+    # hostname: frontend.local

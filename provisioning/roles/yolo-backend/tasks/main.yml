@@ -1,8 +1,20 @@
 ---
+- name: Clone repository
+  git:
+    repo: "{{ repository_url }}"
+    dest: /home/vagrant/yolo
+    version: "{{ repository_version }}"
+
+- name: Build backend Docker image
+  docker_image:
+    name: "{{ yolo_backend_image }}"
+    path: /home/vagrant/yolo/backend
+    state: present
+
 - name: Run backend container
   docker_container:
     name: yolo-backend-container
-    image: "p801/yolo-backend-app:V5.1"
+    image: "{{yolo_backend_image}}"
     state: started
     ports:
       - "{{ backend_port }}:5000"

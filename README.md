@@ -85,7 +85,10 @@ docker images
 # IP3 Configuration Management 
 
 ## Approach
-I have cloned the docker hub repositories 
+I have cloned the docker github repository
+ 
+        https://github.com/bryanphilips/yolo.git
+
 
 ### Security Improvements
 
@@ -170,7 +173,7 @@ So, 0644 means:
       vagrant up
   
   ### Screenshot after running vagrant up you should see
-  
+
       
 
 ![Screenshot from 2024-08-05 23-22-08](https://github.com/user-attachments/assets/8f19f734-7376-4caf-ac8e-b5036becbca8)
