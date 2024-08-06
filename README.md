@@ -85,7 +85,7 @@ docker images
 # IP3 Configuration Management 
 
 ## Approach
-I have cloned the docker github repository
+I have cloned the github repository
  
         https://github.com/bryanphilips/yolo.git
 

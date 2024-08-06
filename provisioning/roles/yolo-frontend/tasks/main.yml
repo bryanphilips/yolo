@@ -9,7 +9,7 @@
   docker_image:
     name: "{{ yolo_frontend_image }}"
     build:
-      path: /home/vagrant/yolo/frontend
+      path: /home/vagrant/yolo/client
     source: build
     state: present
 
@@ -17,6 +17,7 @@
   docker_container:
     name: yolo-frontend-container
     image: "{{ yolo_frontend_image }}"
+    state: started
     ports:
       - "{{ frontend_port }}:3000"
     networks:
