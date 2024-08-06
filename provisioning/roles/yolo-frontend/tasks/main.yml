@@ -8,7 +8,9 @@
 - name: Build frontend Docker image
   docker_image:
     name: "{{ yolo_frontend_image }}"
-    path: /home/vagrant/yolo/frontend
+    build:
+      path: /home/vagrant/yolo/frontend
+    source: build
     state: present
 
 - name: Run frontend container

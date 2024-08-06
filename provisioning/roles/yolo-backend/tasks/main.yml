@@ -8,7 +8,9 @@
 - name: Build backend Docker image
   docker_image:
     name: "{{ yolo_backend_image }}"
-    path: /home/vagrant/yolo/backend
+    build:
+      path: /home/vagrant/yolo/backend
+    source: build
     state: present
 
 - name: Run backend container
