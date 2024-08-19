@@ -210,6 +210,9 @@ gcloud - Command-line tool for Google Cloud Platform (GCP).
 
 Docker - Containerization platform.
 
-### Successful GCP configuration 
+### Successful GCP configuration screenshot
+![Screenshot from 2024-08-19 19-59-33](https://github.com/user-attachments/assets/a3828c5a-68dc-44a4-bf3a-4bd0ae0414d0)
+![Screenshot from 2024-08-19 19-48-07](https://github.com/user-attachments/assets/ec7cf614-6e75-42c2-ae8c-d796de4ef59c)
+
 
 #### For detailed explanation to achieve orchestration kindly see orchestration-explanation.md file
