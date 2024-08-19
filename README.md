@@ -201,3 +201,9 @@ So, 0644 means:
       │   ├── /statefulset
       │   │   └── mongo-statefulset.yaml
 
+## Prerequisites
+Before you begin, ensure you have the following tools installed:
+
+    kubectl - Command-line tool for interacting with the Kubernetes API.
+    gcloud - Command-line tool for Google Cloud Platform (GCP).
+    Docker - Containerization platform.
