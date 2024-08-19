@@ -177,3 +177,27 @@ So, 0644 means:
       
 
 ![Screenshot from 2024-08-05 23-22-08](https://github.com/user-attachments/assets/8f19f734-7376-4caf-ac8e-b5036becbca8)
+
+
+# IP4 Orchestration
+
+## The project structure in orchestration 
+
+      ├── /manifests
+      │   ├── /deployment
+      │   │   ├── yolo-backend-deployment.yaml
+      │   │   └── yolo-frontend-deployment.yaml
+      │   │
+      │   ├── /headless-service
+      │   │   └── mongo-headless-service.yaml
+      │   │
+      │   ├── /secrets
+      │   │   └── mongo-secret.yaml
+      │   │
+      │   ├── /service
+      │   │   ├── yolo-backend-service.yaml
+      │   │   └── yolo-frontend-service.yaml
+      │   │
+      │   ├── /statefulset
+      │   │   └── mongo-statefulset.yaml
+
